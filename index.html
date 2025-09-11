@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- <title>Noor Arfa – Quotation + Kos Jahit</title> -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-slate-50 to-white text-slate-900" style="font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;">
+  <!-- Simple header (no footer) -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-white/85 border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center gap-3">
+      <div class="h-7 w-7 rounded-xl bg-amber-500/10 border border-amber-500/30 grid place-items-center">
+        <span class="text-xs font-bold text-amber-700">NA</span>
+      </div>
+      <h1 class="text-sm sm:text-base font-semibold tracking-tight">Quotation & Order Form</h1>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <!-- CARD 1: FORM -->
+    <section class="bg-white rounded-2xl p-6 shadow-[0_8px_30px_rgba(0,0,0,0.06)] ring-1 ring-slate-200/70">
+      <h2 class="text-base font-semibold mb-4 text-slate-900"># CUSTOMER INFORMATION</h2>
+
+      <form id="rfqForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="md:col-span-2">
+          <label class="block text-[13px] font-medium text-slate-600">Masukkan Full Name</label>
+          <input id="fullName" type="text" class="mt-1 w-full rounded-xl border-slate-300 px-3 py-2 bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-500" />
+        </div>
+        <div>
+          <label class="block text-[13px] font-medium text-slate-600">Masukkan Email Address</label>
+          <input id="email" type="email" class="mt-1 w-full rounded-xl border-slate-300 px-3 py-2 bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-500" />
+        </div>
+        <div>
+          <label class="block text-[13px] font-medium text-slate-600">Masukkan Phone Number</label>
+          <input id="phone" type="tel" class="mt-1 w-full rounded-xl border-slate-300 px-3 py-2 bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-500" />
+        </div>
+        <div class="md:col-span-2">
+          <label class="block text-[13px] font-medium text-slate-600">Masukkan Nama Company/Organisasi</label>
+          <input id="company" type="text" class="mt-1 w-full rounded-xl border-slate-300 px-3 py-2 bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-500" />
+        </div>
+        <div class="md:col-span-2">
+          <label class="block text-[13px] font-medium text-slate-600">Masukkan Alamat</label>
+          <textarea id="address" rows="3" class="mt-1 w-full rounded-xl border-slate-300 px-3 py-2 bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-500"></textarea>
+        </div>
+
+        <!-- PIC -->
+        <div>
+          <label class="block text-[13px] font-medium text-slate-600">Nama PIC</label>
+          <input id="picName" type="text" class="mt-1 w-full rounded-xl border-slate-300 px-3 py-2 bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-500" />
+        </div>
+        <div>
+          <label class="block text-[13px] font-medium text-slate-600">Jawatan</label>
+          <input id="picRole" type="text" class="mt-1 w-full rounded-xl border-slate-300 px-3 py-2 bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-500" />
+        </div>
+
+        <!-- Mode chips -->
+        <div class="md:col-span-2 pt-4">
+          <h2 class="text-base font-semibold mb-3 text-slate-900"># SELECT YOUR BATIK PRODUCTS</h2>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <label class="chip flex items-center gap-2 rounded-xl px-4 py-2 border border-slate-200 bg-slate-50 hover:bg-white transition">
+              <input type="radio" name="productMode" id="modeReady" value="ready" />
+              <span class="text-sm">Pilihan 1 — READY STOCK (Per Produk)</span>
+            </label>
+            <label class="chip flex items-center gap-2 rounded-xl px-4 py-2 border border-slate-200 bg-slate-50 hover:bg-white transition">
+              <input type="radio" name="productMode" id="modeCustom" value="custom" />
+              <span class="text-sm">Pilihan 2 — CUSTOM (PRE ORDER)</span>
+            </label>
+            <label class="chip flex items-center gap-2 rounded-xl px-4 py-2 border border-slate-200 bg-slate-50 hover:bg-white transition">
+              <input type="radio" name="productMode" id="modeReadymade" value="readymade" />
+              <span class="text-sm">Pilihan 3 — READYMADE / HIJERA (PRE ORDER)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- ================= READY ================= -->
+        <div id="readySection" class="md:col-span-2 hidden">
+          <!-- STEP 1: Details Produk -->
+          <div class="mt-6">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="step-title"><span>1</span> Pilih Details Produk (Harga per Meter ikut Material)</h3>
+              <input id="readySearch" type="text" placeholder="Cari produk..." class="rounded-xl border-slate-300 px-3 py-2 bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-amber-300/30 focus:border-amber-500" />
+            </div>
+            <div id="readyList" class="grid sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-4 max-h-[560px] overflow-auto pr-1"></div>
+
+            <div id="readyItemsWrap" class="mt-5 hidden">
+              <div class="table-wrap">
+                <table class="min-w-full text-sm">
+                  <thead class="bg-slate-50 sticky top-0">
+                    <tr class="text-slate-600">
+                      <th class="text-left px-3 py-2">SKU</th>
+                      <th class="text-left px-3 py-2">Produk</th>
+                      <th class="text-left px-3 py-2">Warna</th>
+                      <th class="text-right px-3 py-2">Harga/Mtr</th>
+                      <th class="text-right px-3 py-2">Meter</th>
+                      <th class="text-right px-3 py-2">Qty</th>
+                      <th class="text-right px-3 py-2">Jumlah</th>
+                      <th class="px-3 py-2"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="readyItemsBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: Kos Jahit -->
+          <div class="mt-8">
+            <h3 class="step-title"><span>2</span> Pilih Kos Jahit (Ready Stock)</h3>
+            <div class="grid md:grid-cols-4 gap-3">
+              <div class="md:col-span-2">
+                <label class="lbl">Cari Kod (cth: ZW1701)</label>
+                <input id="sewSearchReady" type="text" placeholder="Taip kod atau nama…" class="inp" />
+                <div id="sewSuggestReady" class="mt-1 max-h-40 overflow-auto border rounded-xl hidden bg-white"></div>
+              </div>
+              <div>
+                <label class="lbl">Material Fabric</label>
+                <select id="sewMaterialReady" class="inp">
+                  <option value="AUTO">Auto (ikut item ready)</option>
+                  <option value="TWILLY_VELVET">Twilly Velvet</option>
+                  <option value="MICRO_COTTON">Micro Cotton</option>
+                  <option value="MARIA_COTTON">Maria Cotton</option>
+                  <option value="DUBAI_CREPE">Dubai Crepe</option>
+                  <option value="ROYAL_SATIN">Royal Satin</option>
+                  <option value="PERSIAN_CREPE">Persian Crepe</option>
+                  <option value="PARIS_CREPE">Paris Crepe</option>
+                  <option value="ITALIAN_CREPE">Italian Crepe</option>
+                  <option value="SWISS_SATIN">Swiss Satin</option>
+                  <option value="FRENCH_CREPE">French Crepe</option>
+                </select>
+              </div>
+              <div>
+                <label class="lbl">Qty (min 5)</label>
+                <input id="sewQtyReady" type="number" min="1" class="inp" />
+              </div>
+            </div>
+            <div class="flex items-center gap-3 mt-3">
+              <button id="btnAddSewReady" type="button" class="btn-subtle">Tambah Kos Jahit</button>
+              <span id="warnSewReady" class="text-sm text-rose-600 hidden">Kod tidak sesuai / min qty tak cukup.</span>
+            </div>
+            <div id="sewListWrapReady" class="mt-3 hidden">
+              <div class="table-wrap">
+                <table class="min-w-full text-sm">
+                  <thead class="bg-slate-50 sticky top-0">
+                    <tr class="text-slate-600">
+                      <th class="text-left px-3 py-2">Kod</th>
+                      <th class="text-left px-3 py-2">Butiran</th>
+                      <th class="text-left px-3 py-2">Material</th>
+                      <th class="text-right px-3 py-2">Qty</th>
+                      <th class="text-right px-3 py-2">Harga/Unit</th>
+                      <th class="text-right px-3 py-2">Jumlah</th>
+                      <th class="px-3 py-2"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="sewBodyReady"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: Payment -->
+          <div class="mt-8">
+            <h3 class="step-title"><span>3</span> Pilih Payment Method</h3>
+            <div class="flex flex-wrap gap-3">
+              <label class="chip chip-raised">
+                <input type="radio" name="paymentMethodReady" value="Cash" /><span class="text-sm">Cash</span>
+              </label>
+              <label class="chip chip-raised">
+                <input type="radio" name="paymentMethodReady" value="E-Perolehan" /><span class="text-sm">E-Perolehan</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- STEP 4: Shipping -->
+          <div class="mt-6">
+            <h3 class="step-title"><span>4</span> Pilih Shipping</h3>
+            <div class="grid md:grid-cols-2 gap-2" id="shipBlockReady"></div>
+          </div>
+
+          <!-- Totals & Actions -->
+          <div id="breakdownWrap" class="mt-6 hidden">
+            <h4 class="font-semibold mb-2 text-slate-900">Pecahan & Jumlah</h4>
+            <div class="table-wrap">
+              <table class="min-w-full text-sm">
+                <thead class="bg-slate-50 sticky top-0">
+                  <tr class="text-slate-600">
+                    <th class="text-left px-3 py-2">Keterangan</th>
+                    <th class="text-right px-3 py-2">Qty</th>
+                    <th class="text-right px-3 py-2">Harga/Unit</th>
+                    <th class="text-right px-3 py-2">Jumlah</th>
+                  </tr>
+                </thead>
+                <tbody id="breakdownBody"></tbody>
+              </table>
+            </div>
+
+            <div class="mt-4 grid sm:grid-cols-2 gap-4">
+              <div class="text-sm text-slate-700 space-y-1">
+                <p><span class="font-medium text-slate-900">Payment:</span> <span id="bdPayment">—</span></p>
+                <p><span class="font-medium text-slate-900">Shipping:</span> <span id="bdShipTxt">—</span></p>
+              </div>
+              <div class="text-sm text-slate-900 space-y-1">
+                <p class="flex justify-between"><span>Subtotal (Cash)</span> <span id="bdSubtotal" class="font-medium">RM0.00</span></p>
+                <p class="flex justify-between"><span id="bdFeeLabel">Caj E-Perolehan (15%)</span> <span id="bdFee" class="font-medium">RM0.00</span></p>
+                <p class="flex justify-between"><span>Shipping</span> <span id="bdShipping" class="font-medium">RM0.00</span></p>
+                <p class="flex justify-between text-lg"><span class="font-semibold">Grand Total</span> <span id="bdGrand" class="font-semibold">RM0.00</span></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 mt-4">
+            <button id="btnTotal" type="button" class="btn-primary">TOTAL</button>
+            <button id="btnRFQ" type="button" class="btn-dark" disabled>REQUEST FOR QUOTATION</button>
+          </div>
+        </div>
+
+        <!-- ================= CUSTOM ================= -->
+        <div id="customSection" class="md:col-span-2 hidden">
+          <!-- STEP 1: Details Produk -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            <h3 class="md:col-span-3 step-title"><span>1</span> Pilih Details Produk</h3>
+
+            <div>
+              <label class="lbl">Pilih Material</label>
+              <select id="c_material" class="inp">
+                <option value="">— Pilih —</option>
+                <option>Paris Crepe</option>
+                <option>Dubai Polycot/Cotton Dubai</option>
+                <option>Luxe Satin/Satin Saluna</option>
+                <option>Royal Satin</option>
+              </select>
+            </div>
+            <div>
+              <label class="lbl">Masukkan Corak</label>
+              <input id="c_pattern" type="text" placeholder="Contoh: Songket Flora Geometri" class="inp" />
+            </div>
+            <div>
+              <label class="lbl">Pilih Warna</label>
+              <input id="c_color" type="text" placeholder="Contoh: Royal Blue" class="inp" />
+            </div>
+
+            <div>
+              <label class="lbl">Meter</label>
+              <input id="c_meter" type="number" min="0" step="0.5" placeholder="cth 4" class="inp" />
+            </div>
+            <div>
+              <label class="lbl">Quantity</label>
+              <input id="c_qty" type="number" min="1" placeholder="cth 10" class="inp" />
+            </div>
+
+            <div>
+              <label class="lbl">Harga/Meter (auto ikut material — boleh edit)</label>
+              <input id="c_pricepm" type="number" step="0.01" placeholder="cth 29" class="inp" />
+            </div>
+            <div>
+              <label class="lbl">Kod SKU Custom (Optional)</label>
+              <input id="c_sku" type="text" placeholder="cth ZC-XXXX" class="inp" />
+            </div>
+
+            <div class="md:col-span-3">
+              <label class="lbl">Variasi Design</label>
+              <select id="c_variant" class="inp">
+                <option value="free">FREE (RM0)</option>
+                <option value="new">New Design (RM500)</option>
+                <option value="edit">Edit Design (RM150)</option>
+                <option value="recolor">Tukar Warna (RM50)</option>
+              </select>
+              <div class="mt-2 flex items-center gap-3">
+                <label class="flex items-center gap-2">
+                  <input id="c_add_logo" type="checkbox" />
+                  <span class="text-sm">Tambah logo/nama sendiri (+RM100)</span>
+                </label>
+              </div>
+              <p class="help">
+                Formula: caj design = (harga variasi ÷ qty);
+                <b>Total (Cash) = (caj design × qty) + harga variasi + (harga/meter × meter × qty)</b>
+                (+RM100 jika tambah logo).
+              </p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 mt-4">
+            <button id="btnAddCustom" type="button" class="btn-subtle">Tambah Item</button>
+          </div>
+
+          <!-- Senarai Custom -->
+          <div id="customListWrap" class="mt-4 hidden">
+            <h4 class="font-semibold mb-2 text-slate-900">Senarai Custom Ditambah</h4>
+            <div class="table-wrap">
+              <table class="min-w-full text-sm">
+                <thead class="bg-slate-50 sticky top-0">
+                  <tr class="text-slate-600">
+                    <th class="text-left px-3 py-2">#</th>
+                    <th class="text-left px-3 py-2">Butiran</th>
+                    <th class="text-left px-3 py-2">SKU</th>
+                    <th class="text-right px-3 py-2">Qty</th>
+                    <th class="text-right px-3 py-2">Harga Variasi</th>
+                    <th class="text-right px-3 py-2">Caj Design</th>
+                    <th class="text-right px-3 py-2">Kos Fabrik</th>
+                    <th class="text-right px-3 py-2">Jumlah (Cash)</th>
+                    <th class="px-3 py-2"></th>
+                  </tr>
+                </thead>
+                <tbody id="customListBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- STEP 2: Kos Jahit (Custom) -->
+          <div class="mt-8">
+            <h3 class="step-title"><span>2</span> Pilih Kos Jahit (Custom / Pre-Order)</h3>
+            <div class="grid md:grid-cols-4 gap-3">
+              <div class="md:col-span-2">
+                <label class="lbl">Cari Kod (cth: ZW1701)</label>
+                <input id="sewSearchCustom" type="text" placeholder="Taip kod atau nama…" class="inp" />
+                <div id="sewSuggestCustom" class="mt-1 max-h-40 overflow-auto border rounded-xl hidden bg-white"></div>
+              </div>
+              <div>
+                <label class="lbl">Material Fabric</label>
+                <select id="sewMaterialCustom" class="inp">
+                  <option value="AUTO">Auto (ikut dropdown material)</option>
+                  <option>Paris Crepe</option>
+                  <option>Dubai Polycot/Cotton Dubai</option>
+                  <option>Luxe Satin/Satin Saluna</option>
+                  <option>Royal Satin</option>
+                </select>
+              </div>
+              <div>
+                <label class="lbl">Qty (min 5)</label>
+                <input id="sewQtyCustom" type="number" min="1" class="inp" />
+              </div>
+            </div>
+            <div class="flex items-center gap-3 mt-3">
+              <button id="btnAddSewCustom" type="button" class="btn-subtle">Tambah Kos Jahit</button>
+              <span id="warnSewCustom" class="text-sm text-rose-600 hidden">Kod tidak sesuai / min qty tak cukup.</span>
+            </div>
+            <div id="sewListWrapCustom" class="mt-3 hidden">
+              <div class="table-wrap">
+                <table class="min-w-full text-sm">
+                  <thead class="bg-slate-50 sticky top-0">
+                    <tr class="text-slate-600">
+                      <th class="text-left px-3 py-2">Kod</th>
+                      <th class="text-left px-3 py-2">Butiran</th>
+                      <th class="text-left px-3 py-2">Material</th>
+                      <th class="text-right px-3 py-2">Qty</th>
+                      <th class="text-right px-3 py-2">Harga/Unit</th>
+                      <th class="text-right px-3 py-2">Jumlah</th>
+                      <th class="px-3 py-2"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="sewBodyCustom"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: Payment -->
+          <div class="mt-8">
+            <h3 class="step-title"><span>3</span> Pilih Payment Method</h3>
+            <div class="flex flex-wrap gap-3">
+              <label class="chip chip-raised"><input type="radio" name="paymentMethodCustom" value="Cash" /><span class="text-sm">Cash</span></label>
+              <label class="chip chip-raised"><input type="radio" name="paymentMethodCustom" value="E-Perolehan" /><span class="text-sm">E-Perolehan</span></label>
+            </div>
+          </div>
+
+          <!-- STEP 4: Shipping -->
+          <div class="mt-6">
+            <h3 class="step-title"><span>4</span> Pilih Shipping</h3>
+            <div class="grid md:grid-cols-2 gap-2" id="shipBlockCustom"></div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 mt-4">
+            <button id="btnTotalCustom" type="button" class="btn-primary">TOTAL</button>
+            <button id="btnRFQCustom" type="button" class="btn-dark" disabled>REQUEST FOR QUOTATION</button>
+          </div>
+
+          <div class="mt-4 grid sm:grid-cols-2 gap-4">
+            <div class="text-sm text-slate-700 space-y-1">
+              <p><span class="font-medium text-slate-900">Payment:</span> <span id="cbdPayment">—</span></p>
+              <p><span class="font-medium text-slate-900">Shipping:</span> <span id="cbdShippingTxt">—</span></p>
+            </div>
+            <div class="text-sm text-slate-900 space-y-1">
+              <p class="flex justify-between"><span>Subtotal (Cash)</span> <span id="cbdSubtotal" class="font-medium">RM0.00</span></p>
+              <p class="flex justify-between"><span id="cbdFeeLabel">Caj E-Perolehan (15%)</span> <span id="cbdFee" class="font-medium">RM0.00</span></p>
+              <p class="flex justify-between"><span>Shipping</span> <span id="cbdShippingCost" class="font-medium">RM0.00</span></p>
+              <p class="flex justify-between text-lg"><span class="font-semibold">Grand Total</span> <span id="cbdGrand" class="font-semibold">RM0.00</span></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= READYMADE (PER-METER, ikut gaya Custom) ================= -->
+        <div id="readymadeSection" class="md:col-span-2 hidden">
+          <!-- STEP 1: Details Produk -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            <h3 class="md:col-span-3 step-title"><span>1</span> Pilih Details Produk (Per Meter)</h3>
+
+            <div>
+              <label class="lbl">Pilih Material</label>
+              <select id="r_material" class="inp">
+                <option value="">— Pilih —</option>
+                <option>IRIS SATIN SALUNA</option>
+                <option>BELLE MICRO KOTOEN</option>
+              </select>
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="lbl">Variasi Design</label>
+              <select id="r_variant" class="inp">
+                <option value="free">FREE (RM0)</option>
+                <option value="recolor">Tukar Warna (RM50)</option>
+                <option value="edit">Edit Design (RM150)</option>
+                <option value="new">New Design (RM500)</option>
+              </select>
+              <div class="mt-2 flex items-center gap-3">
+                <label class="flex items-center gap-2">
+                  <input id="r_add_logo" type="checkbox" /> <span class="text-sm">Tambah logo/nama sendiri (+RM100)</span>
+                </label>
+              </div>
+              <p class="help">
+                Formula: caj design = (harga variasi ÷ qty);
+                <b>Total (Cash) = (harga/meter × meter × qty) + harga variasi</b>
+                (+RM100 jika tambah logo).
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-4 border rounded-xl p-4 border-slate-200 bg-white shadow-sm">
+            <div class="grid md:grid-cols-5 gap-3 items-end">
+              <div>
+                <p class="help">Auto ikut material, boleh ubah.</p>
+                <label class="lbl">Harga/Meter</label>
+                <input id="r_pricepm" type="number" min="0" step="0.01" placeholder="cth 32" class="inp" />
+              </div>
+              <div>
+                <label class="lbl">Meter / item</label>
+                <input id="r_meter" type="number" min="0" step="0.5" placeholder="cth 4" class="inp" />
+              </div>
+              <div>
+                <label class="lbl">Quantity</label>
+                <input id="r_qty" type="number" min="1" placeholder="cth 10" class="inp" />
+              </div>
+              <div id="r_codeWrap" class="relative">
+                <label class="lbl">Kod Readymade</label>
+                <input id="r_code" type="text" placeholder="cth IR00 / BK00" class="inp" autocomplete="off" />
+                <div id="r_codeSuggest" class="suggest-dropdown hidden"></div>
+              </div>
+              <!-- <div>
+                <label class="lbl">Kod SKU Custom (Optional)</label>
+                <input id="r_sku" type="text" placeholder="cth ZR-XXXX" class="inp" />
+              </div> -->
+              <div class="md:col-span-5 flex gap-2">
+                <button id="btnAddReadymade" type="button" class="btn-subtle w-full">Tambah Item</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="readymadeListWrap" class="mt-4 hidden">
+            <h4 class="font-semibold mb-2 text-slate-900">Senarai Readymade (Pre-Order)</h4>
+            <div class="table-wrap">
+              <table class="min-w-full text-sm">
+                <thead class="bg-slate-50 sticky top-0">
+                  <tr class="text-slate-600">
+                    <th class="text-left px-3 py-2">#</th>
+                    <th class="text-left px-3 py-2">Butiran</th>
+                    <th class="text-left px-3 py-2">SKU</th>
+                    <th class="text-right px-3 py-2">Qty</th>
+                    <th class="text-right px-3 py-2">Meter/Item</th>
+                    <th class="text-right px-3 py-2">Harga/Meter</th>
+                    <th class="text-right px-3 py-2">Kos Fabrik</th>
+                    <th class="text-right px-3 py-2">Harga Variasi</th>
+                    <th class="text-right px-3 py-2">Caj Design</th>
+                    <th class="text-right px-3 py-2">Jumlah (Cash)</th>
+                    <th class="px-3 py-2"></th>
+                  </tr>
+                </thead>
+                <tbody id="readymadeListBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- STEP 2: Kos Jahit (RM) -->
+          <div class="mt-8">
+            <h3 class="step-title"><span>2</span> Pilih Kos Jahit (Readymade / Pre-Order)</h3>
+            <div class="grid md:grid-cols-4 gap-3">
+              <div class="md:col-span-2">
+                <label class="lbl">Cari Kod (cth: ZW1701)</label>
+                <input id="sewSearchRM" type="text" placeholder="Taip kod atau nama…" class="inp" />
+                <div id="sewSuggestRM" class="mt-1 max-h-40 overflow-auto border rounded-xl hidden bg-white"></div>
+              </div>
+              <div>
+                <label class="lbl">Material Fabric</label>
+                <select id="sewMaterialRM" class="inp">
+                  <option value="AUTO">Auto (ikut pilihan material di atas)</option>
+                  <option>IRIS SATIN SALUNA</option>
+                  <option>BELLE MICRO KOTOEN</option> 
+                </select>
+              </div>
+              <div>
+                <label class="lbl">Qty (min 5)</label>
+                <input id="sewQtyRM" type="number" min="1" class="inp" />
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 mt-3">
+              <button id="btnAddSewRM" type="button" class="btn-subtle">Tambah Kos Jahit</button>
+              <span id="warnSewRM" class="text-sm text-rose-600 hidden">Kod tidak sesuai / min qty tak cukup.</span>
+            </div>
+
+            <div id="sewListWrapRM" class="mt-3 hidden">
+              <div class="table-wrap">
+                <table class="min-w-full text-sm">
+                  <thead class="bg-slate-50 sticky top-0">
+                    <tr class="text-slate-600">
+                      <th class="text-left px-3 py-2">Kod</th>
+                      <th class="text-left px-3 py-2">Butiran</th>
+                      <th class="text-left px-3 py-2">Material</th>
+                      <th class="text-right px-3 py-2">Qty</th>
+                      <th class="text-right px-3 py-2">Harga/Unit</th>
+                      <th class="text-right px-3 py-2">Jumlah</th>
+                      <th class="px-3 py-2"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="sewBodyRM"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: Payment -->
+          <div class="mt-8">
+            <h3 class="step-title"><span>3</span> Pilih Payment Method</h3>
+            <div class="flex flex-wrap gap-3">
+              <label class="chip chip-raised"><input type="radio" name="paymentMethodRM" value="Cash" /><span class="text-sm">Cash</span></label>
+              <label class="chip chip-raised"><input type="radio" name="paymentMethodRM" value="E-Perolehan" /><span class="text-sm">E-Perolehan</span></label>
+            </div>
+          </div>
+
+          <!-- STEP 4: Shipping -->
+          <div class="mt-6">
+            <h3 class="step-title"><span>4</span> Pilih Shipping</h3>
+            <div class="grid md:grid-cols-2 gap-2" id="shipBlockRM"></div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 mt-4">
+            <button id="btnTotalRM" type="button" class="btn-primary">TOTAL</button>
+            <button id="btnRFQRM" type="button" class="btn-dark" disabled>REQUEST FOR QUOTATION</button>
+          </div>
+          <div class="mt-4 grid sm:grid-cols-2 gap-4">
+              <div class="text-sm text-slate-700 space-y-1">
+                <p><span class="font-medium text-slate-900">Payment:</span> <span id="rbdPayment">—</span></p>
+                <p><span class="font-medium text-slate-900">Shipping:</span> <span id="rbdShippingTxt">—</span></p>
+              </div>
+              <div class="text-sm text-slate-900 space-y-1">
+                <p class="flex justify-between"><span>Subtotal (Cash)</span> <span id="rbdSubtotal" class="font-medium">RM0.00</span></p>
+                <p class="flex justify-between"><span id="rbdFeeLabel">Caj E-Perolehan (15%)</span> <span id="rbdFee" class="font-medium">RM0.00</span></p>
+                <p class="flex justify-between"><span>Shipping</span> <span id="rbdShippingCost" class="font-medium">RM0.00</span></p>
+                <p class="flex justify-between text-lg"><span class="font-semibold">Grand Total</span> <span id="rbdGrand" class="font-semibold">RM0.00</span></p>
+              </div>
+            </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- CARD 2: QUOTATION -->
+    <section id="quotationSection" class="bg-white rounded-2xl p-6 mt-8 shadow-[0_8px_30px_rgba(0,0,0,0.06)] ring-1 ring-slate-200/70 hidden print:block">
+      <div class="text-center mb-2">
+        <img src="logo-noorarfa.jpg" alt="Noor Arfa" class="mx-auto h-10 mb-2">
+        <p class="font-semibold tracking-wide">NOOR ARFA ONLINE EMPIRE SDN BHD</p>
+        <p class="text-sm text-slate-600">202101009431 (1409730-X)</p>
+        <p class="text-sm text-slate-600">LOT 4153, KAWASAN PERINDUSTRIAN CHENDERING, 21080 KUALA TERENGGANU, TERENGGANU DARUL IMAN, MALAYSIA.</p>
+      </div>
+
+      <h2 class="text-xl font-bold text-center my-3">INVOICE</h2>
+
+      <div class="grid md:grid-cols-2 gap-4 text-sm mb-2">
+        <div class="border p-3 rounded border-slate-200">
+          <p id="qCustLine1">—</p>
+          <p id="qCustLine2">—</p>
+          <p id="qCustLine3">—</p>
+          <p id="qCustLine4">—</p>
+        </div>
+        <div class="border p-3 rounded border-slate-200">
+          <div class="flex justify-between"><span>INVOICE NO</span><span id="qInvNo">—</span></div>
+          <div class="flex justify-between"><span>DATE</span><span id="qDate">—</span></div>
+          <div class="flex justify-between"><span>REFERENCE</span><span id="qRef">—</span></div>
+          <div class="flex justify-between"><span>TERM</span><span id="qTerm">30 DAYS</span></div>
+          <div class="flex justify-between"><span>SALESPERSON</span><span id="qSales">CA</span></div>
+        </div>
+      </div>
+
+      <div class="overflow-auto border rounded-xl border-slate-200">
+        <table class="min-w-full text-sm invoice-table">
+          <thead class="bg-slate-50">
+            <tr class="text-slate-600">
+              <th>NO</th>
+              <th>ITEM CODE</th>
+              <th>DESCRIPTION</th>
+              <th>QTY</th>
+              <th>UOM</th>
+              <th>UNIT PRICE</th>
+              <th>AMOUNT</th>
+            </tr>
+          </thead>
+          <tbody id="qBody"></tbody>
+        </table>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 mt-3 text-sm">
+        <div class="border rounded p-3 border-slate-200">
+          <div class="flex items-start gap-2">
+            <span class="whitespace-nowrap">RINGGIT MALAYSIA:</span>
+            <span id="qInWords" class="font-medium">—</span>
+          </div>
+          <div class="mt-2 text-xs text-slate-500">Customer Signature/Customer's Stamp</div>
+        </div>
+        <div class="border rounded p-3 border-slate-200">
+          <div class="flex justify-between"><span>DISCOUNT :</span><span id="qDiscount">0.00</span></div>
+          <div class="flex justify-between text-lg font-semibold mt-1"><span>TOTAL :</span><span id="qGrand">RM0.00</span></div>
+        </div>
+      </div>
+
+      <div class="mt-3 grid md:grid-cols-2 gap-6">
+        <div class="border rounded p-3 border-slate-200">
+          <div class="h-20"></div>
+          <div class="border-t pt-2 text-sm">
+            <p class="text-slate-600">Customer Signature/Customer's Stamp</p>
+          </div>
+        </div>
+        <div class="border rounded p-3 border-slate-200">
+          <div class="h-20"></div>
+          <div class="border-t pt-2 text-right text-sm">
+            <p id="qStaff">ANIS SOLEHAH (PEGAWAI WEBSITE)</p>
+            <p>NOOR ARFA HOLDINGS SDN BHD</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-right text-xs text-slate-500 mt-2">Page 1 of 1</div>
+
+      <div class="mt-4 no-print flex gap-3">
+        <button onclick="window.print()" class="btn-primary">Print / Save PDF</button>
+        <button id="btnSubmitOrder" class="px-4 py-2 rounded-xl bg-emerald-600 text-white disabled:opacity-40 shadow-sm" disabled>SUBMIT ORDER</button>
+        <!-- Tambah butang ini di sebelah SUBMIT ORDER -->
+        <button id="btnEditOrder" class="px-4 py-2 rounded-xl bg-indigo-600 text-white shadow-sm">
+          EDIT ORDER
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== CSS (kekal di sini) ===== -->
+  <style>
+    /* Chips (mode & payment) */
+    .chip input[type="radio"]{ accent-color:#f59e0b; }
+    .chip{
+      border:1px solid #e2e8f0; border-radius:.75rem;
+      background:#f8fafc; padding:.5rem 1rem;
+    }
+    .chip-raised{
+      border:1px solid #e2e8f0; background:#fff; border-radius:.75rem;
+      box-shadow:0 2px 10px rgba(0,0,0,.04);
+    }
+    .chip-raised:has(input[type="radio"]:checked){
+      border-color:#f59e0b; box-shadow:0 0 0 4px rgba(245,158,11,.18);
+    }
+
+    /* Shipping cards */
+    [data-ship]{ border:1px solid #e2e8f0; border-radius:.75rem; }
+    [data-ship]:has(input[type="radio"]:checked){
+      border-color:#f59e0b; box-shadow:0 0 0 4px rgba(245,158,11,.18);
+    }
+
+    /* Step titles */
+    .step-title{
+      font-weight:600; color:#0f172a; display:flex; align-items:center; gap:.5rem;
+    }
+    .step-title span{
+      display:inline-grid; place-items:center; width:26px; height:26px;
+      border-radius:999px; background:#111827; color:#fff; font-weight:700; font-size:12px;
+    }
+
+    /* Labels & help text */
+    .lbl{ display:block; font-size:13px; font-weight:500; color:#64748b; }
+    .help{ font-size:12px; color:#64748b; margin-top:.25rem; }
+
+    /* Inputs */
+    .inp{
+      margin-top:.25rem; width:100%; border-radius:.75rem; border:1px solid #cbd5e1;
+      padding:.5rem .75rem; background:#f8fafc; transition:border-color .2s, box-shadow .2s, background .2s; outline:none;
+    }
+    .inp:focus{
+      border-color:#f59e0b; background:#fff; box-shadow:0 0 0 4px rgba(245,158,11,.30);
+    }
+
+    /* Buttons */
+    .btn-primary{
+      padding:.5rem 1rem; border-radius:.75rem; color:#fff;
+      background:linear-gradient(90deg,#f59e0b,#f97316); box-shadow:0 1px 2px rgba(0,0,0,.1);
+    }
+    .btn-dark{
+      padding:.5rem 1rem; border-radius:.75rem; color:#fff; background:#111827;
+      box-shadow:0 1px 2px rgba(0,0,0,.1);
+    }
+    .btn-subtle{ padding:.5rem .75rem; border-radius:.75rem; background:#f1f5f9; }
+    .btn-subtle:hover{ background:#e2e8f0; }
+
+    /* Tables */
+    .table-wrap{
+      overflow:auto; border:1px solid #e2e8f0; border-radius:.75rem; box-shadow:0 2px 10px rgba(0,0,0,.04);
+    }
+    .invoice-table { border-collapse: collapse; width: 100%; }
+    .invoice-table th, .invoice-table td {
+      border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb; padding: 8px 10px;
+    }
+    .invoice-table thead th { text-align:left; }
+
+    /* Autocomplete dropdown untuk Kod Readymade */
+    .suggest-dropdown{
+      position:absolute; left:0; right:0; top:calc(100% + 4px);
+      background:#fff; border:1px solid #e2e8f0; border-radius:.75rem;
+      box-shadow:0 12px 30px rgba(2,6,23,.10); z-index:60; max-height:260px; overflow:auto;
+    }
+    .suggest-item{
+      width:100%; text-align:left; padding:.5rem .75rem; border-bottom:1px solid #f1f5f9;
+    }
+    .suggest-item:last-child{ border-bottom:0; }
+    .suggest-item:hover, .suggest-item.is-active{ background:#f8fafc; }
+    .suggest-item .line1{ font-size:.9rem; color:#0f172a; font-weight:600; }
+    .suggest-item .line2{ font-size:.75rem; color:#64748b; margin-top:2px; }
+    .suggest-empty{ padding:.5rem .75rem; font-size:.85rem; color:#64748b; }
+
+    /* Print */
+    @media print {
+      body * { visibility: hidden !important; }
+      #quotationSection, #quotationSection * { visibility: visible !important; }
+      #quotationSection { position:absolute; left:0; top:0; width:100%; box-shadow:none !important; border-radius:0 !important; }
+      .no-print, header { display:none !important; }
+    }
+  </style>
+
+  <!-- ===== App JS (dipisahkan) ===== -->
+  <script src="app.js"></script>
+</body>
+</html>
